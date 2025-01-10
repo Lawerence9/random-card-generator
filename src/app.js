@@ -1,11 +1,40 @@
 /* eslint-disable */
-import "bootstrap";
-import "./style.css";
+let cardType = ["♦", "♥", "♠", "♣"];
+let cardNumber = [
+  "A",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "J",
+  "Q",
+  "K"
+];
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
+let suit = document.querySelectorAll("#suit");
+let card = document.getElementById("card");
 
 window.onload = function() {
-  //write your code here
-  console.log("Hello Rigo from the console!");
+  let randomSuit = cardType[Math.floor(Math.random() * 4)];
+  for (let i = 0; i < suit.length; i++) {
+    suit[i].innerHTML = randomSuit;
+    if (randomSuit === "♥" || randomSuit === "♦") {
+      suit[i].classList.add("text-danger");
+    }
+  }
+  if (randomSuit === "♥" || randomSuit === "♦") {
+    card.classList.add("text-danger");
+  }
+  card.innerHTML = cardNumber[Math.floor(Math.random() * 13)];
 };
+
+let reloadButton = document.getElementById("reload");
+function refresh() {
+  window.location.reload();
+}
+reloadButton.addEventListener("click", refresh);
